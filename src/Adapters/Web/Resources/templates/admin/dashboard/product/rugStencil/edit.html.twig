@@ -1,0 +1,12 @@
+{%- extends 'admin/dashboard/layout.html.twig' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        'admin_products_rug_stencil_cget': 'product.rug_stencil.list.header',
+        '': 'product.edit.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    {%- include 'admin/dashboard/product/rugStencil/form.html.twig' -%}
+{%- endblock -%}

@@ -1,0 +1,24 @@
+.form-stencils__item {
+  margin-bottom: 40px; }
+
+.form-stencils__file-remove {
+  color: red;
+  cursor: pointer; }
+  .form-stencils__file-remove:hover, .form-stencils__file-remove:focus, .form-stencils__file-remove:active {
+    color: darkred; }
+
+.form-stencils__file-doc {
+  height: 40px;
+  padding-right: 50px;
+  position: relative; }
+  .form-stencils__file-doc-name {
+    color: #333;
+    font-size: 18px;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+  .form-stencils__file-doc .form-stencils__file-remove {
+    position: absolute;
+    right: 0;
+    top: 4px; }

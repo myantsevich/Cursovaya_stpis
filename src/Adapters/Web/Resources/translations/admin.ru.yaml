@@ -1,0 +1,229 @@
+common:
+    breadcrumbs:
+        main: Главная
+    actions:
+        label: Действия
+        new: Добавить
+        edit: Изменить
+        delete: Удалить
+        view: Просмотр
+        back: Назад
+    buttons:
+        save: Сохранить
+        save_and_edit: Сохранить и остаться
+        save_and_return: Сохранить и вернуться
+
+blog:
+    flashes:
+        post:
+            success: Обновление заверешено успешно
+        put:
+            success: Пост добавлен
+    list:
+        header: Блог
+    new:
+        header: Новый пост
+    edit:
+        header: Редактирование
+    actions:
+        new: Добавить пост
+    table:
+        header:
+            title: заголовок
+            summary: краткое описание
+        empty:
+            text: Нет записей
+    post:
+        label:
+            header: Заголовок
+            summary: Краткое описание
+            content: Тело поста
+
+contact:
+    flashes:
+        post:
+            success: Обновление заверешено успешно
+    list:
+        header: Пользовательские сообщения
+    edit:
+        header: Редактирование
+    table:
+        header:
+            name: Имя
+            email: e-mail
+            phone: телефон
+            message: сообщения
+        empty:
+            text: Нет сообщений
+
+faq:
+    flashes:
+        post:
+            success: Обновление заверешено успешно
+    edit:
+        header: FAQ
+    actions:
+        add_block: Добавить блок
+    block:
+        label:
+            question: Вопрос
+            answer: Ответ
+
+order:
+    individual:
+        flashes:
+            post:
+                success: Обновление заверешено успешно
+        edit:
+            header: Редактирование
+        list:
+            header: Индивидуальные заказы
+        table:
+            empty:
+                text: Нету индивидуальных заказов
+            header:
+                name: Имя
+                email: e-mail
+                message: Сообщение
+                size: Размер
+                shape: Форма
+                material: Материал
+    product:
+        view:
+            header: Просмотр
+        list:
+            header: Заказы
+            products: Товары
+        table:
+            empty:
+                text: Нету заказов
+            header:
+                name: Имя
+                email: e-mail
+                total: Сумма
+                status: Статус
+                product:
+                    name: Продукт
+                    qty: Кол-во
+                    total: Общая цена
+partner:
+    flashes:
+        put:
+            success: Партнер добавлен
+        post:
+            success: Обновление заверешено успешно
+    new:
+        header: Новый партнер
+    edit:
+        header: Редактирование
+    list:
+        header: Партнеры
+    table:
+        empty:
+            text: Нету партнеров
+        header:
+            name: Имя
+            discount: Скидка, %
+            code: Код
+    label:
+        name: Имя
+        discount: Скидка, %
+        code: Код
+
+product:
+    flashes:
+        put:
+            success: Продукт добавлен
+        post:
+            success: Обновление заверешено успешно
+    actions:
+        new: Добавить продукт
+    new:
+        header: Новый продукт
+    edit:
+        header: Редактирование
+    list:
+        header: Продукты
+    table:
+        empty:
+            text: Нету продуктов
+        header:
+            title: Название
+            category: Категория
+            summary: Краткое описание
+            price: Цена
+            material: Материал
+            availability: Доступен
+    label:
+        general: Общая информация
+        gallery: Галлерея
+        stencils: Схемы
+        title: Название
+        category: Категория
+        summary: Краткое описание
+        description: Описание
+        material: Материал
+        availability: Доступен
+
+    rug_stencil:
+        list:
+            header: Схемы ковров
+
+price:
+    label:
+        amount: Цена
+
+currency:
+    label: Валюта
+
+reviews:
+    flashes:
+        post:
+            success: Обновление заверешено успешно
+        put:
+            success: Отзыв добавлен
+    list:
+        header: Отзывы покупателей
+    new:
+        header: Новый отзыв
+    edit:
+        header: Редактирование
+    actions:
+        new: Добавить отзыв
+    table:
+        header:
+            author_name: Покупатель
+            body: Отзыв
+        empty:
+            text: Нет отзывов
+    label:
+        author_name: Покупатель
+        body: Отзыв
+
+config:
+    flashes:
+        instagram_access_token:
+            code_error: Непредвиденная ошибка при получении code во время авторизации. Обратитесь к программистам
+            success: Access Token установлен. Теперь на главной можно увидеть акутальные посты из инстаграмма
+    edit:
+        header: Настройки
+        instagram: Инстаграм
+    actions:
+        instagram:
+            auth: Получить Access Token
+    form:
+        help:
+            instagra_access_token: 'Прежде чем, чтобы настроить инстаграм, вы должны зарегестрировать приложение в разделе разроботчиков на сайте инстаграмма.
+                                    Укажите в Website URL доменное имя вашего сайта (например http://belkinhouse.by).
+                                    Далее во вкладке Security добавьте Valid redirect URIs по шаблону { DOMAIN }callback_uri (где { DOMAIN } доменное имя, которое вы добавили ранее).
+                                    После скопируйте Client ID и Client Secret в поля ниже и сохраните настройки.
+                                    Для завершения настройки нажмите на кнопку "Получить Access Token"'
+        label:
+            lead_text: Текст над картинкой на главной
+            about_text: Текст обо мне
+            order_flash_text: Текст флеш-сообщения на странице заказа
+            order_flash_enabled: Флеш-сообщение на странице заказа включено
+            instagram_url: Ссылка на инстаграмм аккаунт
+            instagram_access_token: Инстаграмм Access Token
+            instagram_client_id: Инстаграмм Client ID
+            instagram_client_secret: Инстаграмм Client Secret

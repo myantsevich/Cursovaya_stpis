@@ -1,0 +1,37 @@
+{%- extends 'admin/dashboard/layout.html.twig' -%}
+{%- trans_default_domain 'admin' -%}
+{%- form_theme form with ['bootstrap_4_layout.html.twig', 'admin/dashboard/form/common.html.twig'] -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        'admin_contact_cget': 'contact.list.header',
+        '': 'contact.edit.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    <div class="container-fluid mt-3">
+        {{- form_start(form, {attr: {autocomplete: "off"}}) -}}
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="mb-3">{{- 'contact.edit.header'|trans -}}</h4>
+                    {{- form_row(form.personName) -}}
+                    {{- form_row(form.personEmail) -}}
+                    {{- form_row(form.personPhone) -}}
+                    {{- form_row(form.message) -}}
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="row mb-lg-5">
+                <div class="col-sm-6">
+                    {{- form_widget(form.saveAndReturn) -}}
+                </div>
+                <div class="col-sm-6">
+                    {{- form_widget(form.saveAndEdit) -}}
+                </div>
+            </div>
+        {{- form_end(form) -}}
+    </div>
+{%- endblock -%}

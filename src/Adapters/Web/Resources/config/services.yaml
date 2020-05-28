@@ -1,0 +1,194 @@
+parameters:
+    available_locales: ['ru', 'en']
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: false
+        public: false
+
+    BelkinDom\UseCase\:
+        resource: '../../../../UseCase/*'
+
+    BelkinDom\Adapters\Web\Controller\:
+        resource: '../../../../Adapters/Web/Controller'
+        tags: ['controller.service_arguments']
+
+    BelkinDom\Adapters\Web\Controller\Front\IndexController:
+        arguments:
+            $availableLocales: "%available_locales%"
+        tags: ['controller.service_arguments']
+
+    BelkinDom\Adapters\Web\Command\:
+        resource: '../../../../Adapters/Web/Command/*'
+        tags: ['console.command']
+
+    BelkinDom\Adapters\Web\EventSubscriber\:
+        resource: '../../../../Adapters/Web/EventSubscriber/*'
+        tags: ['kernel.event_subscriber']
+
+    BelkinDom\Adapters\Web\EventSubscriber\LocaleSubscriber:
+        arguments:
+            $defaultLocale: '%kernel.default_locale%'
+        tags: ['kernel.event_subscriber']
+
+    BelkinDom\UseCase\Product\ImportCategoriesUseCase:
+        calls:
+            - method: setCategoryData
+              arguments:
+                  - [{name: 'ковры', slug: 'rugs'}, {name: 'пуфы', slug: 'pouffes'}, {name: 'корзины', slug: 'baskets'}, {name: 'пледы', slug: 'plaids'}]
+
+    BelkinDom\Adapters\Database\Doctrine\EntityRepository:
+        abstract:  true
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+
+    BelkinDom\Adapters\Session\Carts:
+        autowire: true
+        autoconfigure: true
+        public: false
+    BelkinDom\Store\Cart\Carts: '@BelkinDom\Adapters\Session\Carts'
+
+    BelkinDom\Adapters\Database\Doctrine\FilesRepository: ~
+    BelkinDom\Store\File\Files: '@BelkinDom\Adapters\Database\Doctrine\FilesRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\PartnersRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Partner\Partner
+    BelkinDom\Store\Partner\Partners: '@BelkinDom\Adapters\Database\Doctrine\PartnersRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\PostsRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Blog\Post
+    BelkinDom\Store\Blog\Posts: '@BelkinDom\Adapters\Database\Doctrine\PostsRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\ReviewsRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Review\Review
+    BelkinDom\Store\Review\Reviews: '@BelkinDom\Adapters\Database\Doctrine\ReviewsRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\ProductsRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Product\Product
+    BelkinDom\Store\Product\Products: '@BelkinDom\Adapters\Database\Doctrine\ProductsRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\RugStencilProductsRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Product\RugStencilProduct
+    BelkinDom\Store\Product\RugStencilProducts: '@BelkinDom\Adapters\Database\Doctrine\RugStencilProductsRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\RugStencilsRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Product\RugStencil\RugStencil
+    BelkinDom\Store\Product\RugStencil\RugStencils: '@BelkinDom\Adapters\Database\Doctrine\RugStencilsRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\FaqRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Faq\Faq
+    BelkinDom\Store\Faq\Faqs: '@BelkinDom\Adapters\Database\Doctrine\FaqRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\OrdersRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Order\Order
+    BelkinDom\Store\Order\Orders: '@BelkinDom\Adapters\Database\Doctrine\OrdersRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\IndividualOrdersRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Order\IndividualOrder
+    BelkinDom\Store\Order\IndividualOrders: '@BelkinDom\Adapters\Database\Doctrine\IndividualOrdersRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\ContactsRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Contact\Contact
+    BelkinDom\Store\Contact\Contacts: '@BelkinDom\Adapters\Database\Doctrine\ContactsRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\ConfigsRepository:
+        autowire: false
+        autoconfigure: false
+        public: false
+        parent: BelkinDom\Adapters\Database\Doctrine\EntityRepository
+        arguments:
+            - BelkinDom\Store\Web\Config
+    BelkinDom\Store\Web\Configs: '@BelkinDom\Adapters\Database\Doctrine\ConfigsRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\OrderItemsRepository: ~
+    BelkinDom\Store\Order\OrderItems: '@BelkinDom\Adapters\Database\Doctrine\OrderItemsRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\ProductsGalleriesRepository: ~
+    BelkinDom\Store\Product\Gallery\Galleries: '@BelkinDom\Adapters\Database\Doctrine\ProductsGalleriesRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\ProductsGalleriesItemsRepository: ~
+    BelkinDom\Store\Product\Gallery\GalleriesItems: '@BelkinDom\Adapters\Database\Doctrine\ProductsGalleriesItemsRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\ProductsCategoriesRepository: ~
+    BelkinDom\Store\Product\Category\Categories: '@BelkinDom\Adapters\Database\Doctrine\ProductsCategoriesRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\UsersRepository: ~
+    BelkinDom\Store\User\Users: '@BelkinDom\Adapters\Database\Doctrine\UsersRepository'
+
+    BelkinDom\Adapters\Database\Doctrine\AuthProvider: ~
+    BelkinDom\Adapters\Instagram\Client: ~
+
+    BelkinDom\Adapters\Web\Form\Type\TranslatableType:
+        arguments:
+            - '%available_locales%'
+        tags: [form.type]
+
+    BelkinDom\Adapters\File\Local\Storage:
+        calls:
+            - method: setDirectory
+              arguments:
+                  - '%kernel.root_dir%/../../../public'
+                  - 'uploads'
+    BelkinDom\Store\File\FileStorageInterface: '@BelkinDom\Adapters\File\Local\Storage'
+
+    BelkinDom\Adapters\Web\Security\AuthPasswordEncoder: ~
+    BelkinDom\Adapters\Web\Menu\HeaderMenu: ~
+    BelkinDom\Adapters\Web\Twig\AppExtension:
+      autowire: true,
+      autoconfigure: true,
+      public: false
+    BelkinDom\Store\Security\AuthPasswordEncoderInterface: '@BelkinDom\Adapters\Web\Security\AuthPasswordEncoder'
+
+    BelkinDom\Adapters\Web\View\MoneyFormatter\MoneyFormatter: ~
+    BelkinDom\Adapters\Web\View\MoneyFormatter\UsdFormatter:
+        tags: [app.view.money_formatter]

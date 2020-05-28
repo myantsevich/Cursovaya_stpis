@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="BelkinDom\Store\Product\Gallery\Gallery"
+            repository-class="BelkinDom\Adapters\Database\Doctrine\ProductsGalleriesRepository"
+            table="bk_products_galleries">
+
+        <id name="galleryUuid" type="galleryUuid">
+            <generator strategy="NONE"/>
+        </id>
+
+        <many-to-many field="items" target-entity="BelkinDom\Store\Product\Gallery\GalleryItem" fetch="EAGER">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-table name="bk_products_galleries_galleries_items">
+                <join-columns>
+                    <join-column name="gallery_uuid" referenced-column-name="gallery_uuid"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="gallery_item_uuid" referenced-column-name="gallery_item_uuid" unique="true"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+    </entity>
+</doctrine-mapping>

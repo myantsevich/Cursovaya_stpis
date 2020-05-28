@@ -1,0 +1,60 @@
+{%- extends "admin/dashboard/layout.html.twig" -%}
+{%- trans_default_domain 'admin' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        '': 'product.rug_stencil.list.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    <div class="container-fluid">
+        <div class="d-inline-flex w-100 justify-content-between">
+            <h1 class="display-4 my-4 d-inline-flex">{{ 'product.rug_stencil.list.header'|trans }}</h1>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{- 'common.actions.label'|trans -}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{ path('admin_products_rug_stencil_put') }}">{{ 'product.actions.new'|trans }}</a>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">{{ 'product.table.header.title'|trans }}</th>
+                <th scope="col">{{ 'product.table.header.summary'|trans }}</th>
+                <th scope="col">{{ 'product.table.header.price'|trans }}</th>
+                <th scope="col">{{ 'product.table.header.availability'|trans }}</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%- for product in list -%}
+                <tr>
+                    <td>{{ product.title.translate(default_locale) }}</td>
+                    <td>{{ product.summary.translate(default_locale) }}</td>
+                    <td>{{ product.price|money }}</td>
+                    <td>
+                        {%- include 'admin/dashboard/partials/table_cols/boolean.html.twig' with {cell: {value: product.availability} } -%}
+                    </td>
+                    <td>
+                        {%- include 'admin/dashboard/partials/table/actions/actions.html.twig' with {actions: {
+                            edit: path('admin_products_rug_stencil_post', {id: product.productUuid})
+                        }} -%}
+                    </td>
+                </tr>
+            {%- else -%}
+                <tr><td colspan="5">{{ 'product.table.empty.text'|trans }}</td></tr>
+            {%- endfor -%}
+            </tbody>
+        </table>
+
+        {%- if list.nbResults > 0 -%}
+            {{- pagerfanta(list, 'twitter_bootstrap4') -}}
+        {%- endif -%}
+    </div>
+{%- endblock -%}

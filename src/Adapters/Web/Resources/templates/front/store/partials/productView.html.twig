@@ -1,0 +1,87 @@
+{%- spaceless -%}
+    {%- for message in app.flashes('success') -%}
+        <div class="alert alert-success">
+            {{- message|trans({}, 'forms') -}}
+        </div>
+    {%- endfor -%}
+
+    <div class="product clearfix">
+        <div class="product-gallery">
+            <div class="product-gallery__showcase"></div>
+            <div class="product-gallery__items">
+                {%- for item in product.gallery.items -%}
+                    <div class="product-gallery__item" data-image="{{ item.image.path | imagine_filter('product_square_thumb', {thumbnail: {size: [470, 470]} }) }}">
+                        <img src="{{ item.image.path | imagine_filter('product_square_thumb') }}" width="100" height="100">
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+        <div class="product-meta">
+            <h1 class="product-title">
+                {{- product.title.translate(app.request.locale) -}}
+            </h1>
+            {{- include('front/store/partials/productPrice.html.twig', {price: product.price}) -}}
+            <div class="product-value">
+                {{- product.summary.translate(app.request.locale) -}}
+            </div>
+            {%- if product.material is defined -%}
+                <div class="product-value">
+                    {{- product.material.translate(app.request.locale) -}}
+                </div>
+            {%- endif -%}
+            <div class="product-value">
+                {{- product.description.translate(app.request.locale) | nl2br -}}
+            </div>
+
+            <a href="{{ path('front_cart_product_put', {id: product.productUuid}) }}" class="app-btn app-btn-lg" >
+                {{ 'store.buy'|trans({}, 'front') }}
+            </a>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var Gallery = function ($gallery) {
+                var $showcase = $gallery.find(".product-gallery__showcase"),
+                    $items = $gallery.find(".product-gallery__item");
+
+                if (!$items.length) {
+                    return;
+                }
+
+                $showcase.append($("<img width='470' height='470'>"));
+
+                selectItem($items.eq(0));
+
+                function activateItem($item) {
+                    $item.addClass("active");
+                }
+
+                function deactivateItems($items) {
+                    $items.removeClass("active");
+                }
+
+                function setShowcaseImage(imgUrl) {
+                    $showcase.find("img").attr("src", imgUrl);
+                }
+
+                function selectItem($item) {
+                    var image = $item.data("image");
+
+                    deactivateItems($items);
+                    activateItem($item);
+                    setShowcaseImage(image);
+                }
+
+                $items.on("click", function (e) {
+                    e.preventDefault();
+                    selectItem($(this));
+                });
+            };
+
+            $(".product-gallery").each(function () {
+                new Gallery($(this));
+            });
+        })();
+    </script>
+{%- endspaceless -%}

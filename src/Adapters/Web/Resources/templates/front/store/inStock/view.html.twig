@@ -1,0 +1,19 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    {%- spaceless -%}
+        <ul id="pass">
+            <li><a href="{{ path('front_store') }}">{{ 'menu.items.store'|trans({}, 'front') }}</a></li>
+            <li>
+                <a href="{{ path('front_store_category_products', {slug: currentCategory.slug}) }}">
+                    {{- currentCategory.title -}}
+                </a>
+            </li>
+            <li>{{- product.title.translate(app.request.locale) -}}</li>
+        </ul>
+
+        <div class="app-container">
+            {{- include('front/store/partials/productView.html.twig', {product: product}) -}}
+        </div>
+    {%- endspaceless -%}
+{% endblock main %}

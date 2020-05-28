@@ -1,0 +1,82 @@
+{%- trans_default_domain 'admin' -%}
+
+{%- block gallery_row -%}
+    <h4 class="mb-3 d-flex align-items-center justify-content-between">
+        <span>{{ 'product.label.gallery'|trans }}</span>
+        <a role="button" tabindex="-1" id="product-gallery-add" class="text-success">
+            <i class="material-icons md-36">add_box</i>
+        </a>
+    </h4>
+    <div class="form-gallery" data-counter="{{ form.items|length }}">
+        {{- form_row(form.items) -}}
+        {{- form_rest(form) -}}
+        {{- form_errors(form) -}}
+
+        <script>
+            (function () {
+                var $gallery = $(".form-gallery"),
+                    $items = $gallery.find(".form-gallery__items"),
+                    counter = parseInt($gallery.data("counter")) + 1;
+
+                $("#product-gallery-add").on("click", function (e) {
+                    e.preventDefault();
+
+                    var protoString = $items.data("prototype"),
+                        $item = $(protoString.replace(/__name__/g, counter));
+
+                    $items.append($item);
+                    counter += 1;
+                });
+
+                $gallery.on("click", ".form-gallery__item-file-remove", function () {
+                    var $item = $(this).parents(".form-gallery__item");
+                    $item.remove();
+                });
+            })();
+        </script>
+    </div>
+{%- endblock gallery_row -%}
+
+{%- block collection_row -%}
+    <div class="form-gallery__items" data-prototype="{{ form_row(prototype)|e('html') }}">
+        {%- for galleryItem in form -%}
+            {{- form_row(galleryItem) -}}
+        {%- endfor -%}
+        {{ form_rest(form) }}
+    </div>
+{%- endblock collection_row -%}
+
+{%- block gallery_item_row -%}
+    <div class="form-gallery__item">
+        {{- form_row(form.image) -}}
+        <div class="d-none">{{ form_widget(form.isMain) }}</div>
+        {{- form_rest(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock gallery_item_row -%}
+
+{%- block attachment_row -%}
+    {%- spaceless -%}
+        <div class="form-gallery__item-file">
+            {%- if value.path -%}
+                <div class="form-gallery__item-file-image d-flex align-items-center justify-content-center">
+                    <img src="{{ value.path }}" alt="{{ value.originalFileName }}">
+                    <a role="button" tabindex="-1" class="form-gallery__item-file-remove">
+                        <i class="material-icons md-36">remove_circle</i>
+                    </a>
+                    <div class="d-none">{{ form_widget(form.uploadedFile) }}</div>
+                </div>
+            {%- else -%}
+                <div class="form-gallery__item-file-widget d-flex align-items-center justify-content-between">
+                    {{- form_widget(form.uploadedFile) -}}
+                    <a role="button" tabindex="-1" class="form-gallery__item-file-remove">
+                        <i class="material-icons md-36">remove_circle</i>
+                    </a>
+                </div>
+            {%- endif -%}
+            {{- form_errors(form.uploadedFile) -}}
+            {{- form_rest(form) -}}
+            {{- form_errors(form) -}}
+        </div>
+    {%- endspaceless -%}
+{%- endblock attachment_row -%}

@@ -1,0 +1,52 @@
+{%- extends 'admin/dashboard/layout.html.twig' -%}
+{%- trans_default_domain 'admin' -%}
+{%- form_theme form with ['bootstrap_4_layout.html.twig', 'admin/dashboard/form/common.html.twig'] -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        '': 'config.edit.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    <div class="container-fluid mt-3">
+        {{- form_start(form, {attr: {autocomplete: "off"}}) -}}
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="mb-3">{{ 'config.edit.header'|trans }}</h4>
+                    {{- form_row(form.leadText) -}}
+                    {{- form_row(form.aboutText) -}}
+                    {{- form_row(form.orderFlashText) -}}
+                    {{- form_row(form.orderFlashEnabled) -}}
+
+                    <h4 class="mb-3">{{ 'config.edit.instagram'|trans }}</h4>
+                    <div class="form-group">
+                        <small class="form-text text-muted">
+                            {{- 'config.form.help.instagra_access_token'|trans({'callback_uri': path('admin_config_instagram_auth')}) -}}
+                        </small>
+                    </div>
+                    {%- set instagramClientId = form.instagramClientId.vars.value -%}
+                    {%- if instagramClientId -%}
+                        {{- form_row(form.instagramAccessToken) -}}
+                        <div class="form-group">
+                            <a href="{{ adminInstagramAuthPath(instagramClientId) }}" class="btn btn-warning">
+                                {{- 'config.actions.instagram.auth'|trans -}}
+                            </a>
+                        </div>
+                    {%- endif -%}
+                    {{- form_row(form.instagramClientId) -}}
+                    {{- form_row(form.instagramClientSecret) -}}
+                    {{- form_row(form.instagramUrl) -}}
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="row mb-lg-5">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-success btn-block btn-lg">{{ 'common.buttons.save'|trans }}</button>
+                </div>
+            </div>
+        {{- form_end(form) -}}
+    </div>
+{%- endblock -%}

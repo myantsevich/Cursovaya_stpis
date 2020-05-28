@@ -1,0 +1,44 @@
+menu:
+    order: Cart
+    cart:
+        goods: Product
+        price: Price
+        quantity: Number
+        total: Amount
+        total_price: Sum total
+        order: Place an order
+        empty: Cart is empty
+    items:
+        about_us: About us
+        store: Store
+        blog: Blog
+        faq: FAQ
+        contacts: Contacts
+        feedback: Feedback
+        partners: Partners
+
+about:
+    go_to_store: Go to store
+    latest_news: Latest
+    about_me: About me
+    whatch_us: Follow Belkin Dom in Instagram
+    read: Read more
+
+store:
+    available: In stock
+    order: Individual order
+    scheme: Rug schemes
+    pouffes: Pouffes
+    baskets: Baskets
+    pladis: Plaids
+    rugs: Rugs
+    buy: Buy
+    info: More detail
+
+contacts:
+    header: If something went wrong or you have questions / suggestions / requests, write to belkin.home@gmail.com or use the form below, I will answer.
+    btn_submit: Submit
+
+partners:
+    sale: Discount
+    promo: Promo code

@@ -1,0 +1,22 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    {%- spaceless -%}
+        <section class="post-list">
+            {%- for post in list -%}
+                <div class="post-preview clearfix">
+                    <div class="post-preview__img" style="background-image: url('{{ post.previewImage.path }}')"></div>
+                    <div class="post-preview__content">
+                        <h2 class="post-preview__header">{{ post.header.translate(app.request.locale) }}</h2>
+                        <p>{{ post.summary.translate(app.request.locale) }}</p>
+                    </div>
+                    <a href="{{ path('front_blog_post', {id: post.postUuid}) }}" class="app-btn post-preview__more">
+                        {{ 'about.read'|trans({}, 'front') }}
+                    </a>
+                </div>
+            {%- endfor -%}
+        </section>
+
+        {{- include('front/store/partials/pager.html.twig', {pager: list}) -}}
+    {%- endspaceless -%}
+{% endblock %}

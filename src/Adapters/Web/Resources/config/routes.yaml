@@ -1,0 +1,9 @@
+controllers:
+    resource: ../Controller/
+    type: annotation
+
+admin_logout:
+    path: /admin/logout
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"

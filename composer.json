@@ -1,0 +1,50 @@
+{
+    "name": "BelkinDomOnlineStore",
+    "license": "proprietary",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "BelkinDom\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BelkinDom\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "ext-gd": "*",
+        "ramsey/uuid": "^3.7",
+        "doctrine/orm": "^2.6",
+        "symfony/flex": "^1.0",
+        "doctrine/doctrine-bundle": "^1.8",
+        "sensio/framework-extra-bundle": "^5.1",
+        "symfony/form": "^4.0",
+        "symfony/framework-bundle": "^4.0",
+        "symfony/twig-bundle": "^4.0",
+        "symfony/validator": "^4.0",
+        "symfony/yaml": "^4.0",
+        "symfony/security-bundle": "^4.0",
+        "white-october/pagerfanta-bundle": "^1.1",
+        "doctrine/doctrine-migrations-bundle": "^1.0",
+        "symfony/translation": "^4.0",
+        "cosenary/instagram": "^2.3",
+        "liip/imagine-bundle": "^2.0@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5",
+        "symfony/browser-kit": "^4.0",
+        "symfony/dotenv": "^4.0",
+        "symfony/profiler-pack": "^1.0"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
+            "bk:product:import-categories": "symfony-cmd"
+        }
+    },
+    "extra": {
+        "config-dir": "src/Adapters/Web/Resources/config"
+    }
+}

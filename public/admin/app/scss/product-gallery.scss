@@ -1,0 +1,35 @@
+.form-gallery {
+  &__item {
+    margin-bottom: 40px;
+
+    &-file {
+      &-remove {
+        color: red;
+        cursor: pointer;
+
+        &:hover, &:focus, &:active {
+          color: darkred;
+        }
+      }
+    }
+
+    &-file-image {
+      border-radius: 4px;
+      background: lightgray;
+      height: 120px;
+      position: relative;
+      width: 120px;
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+      }
+
+      .form-gallery__item-file-remove {
+        position: absolute;
+        right: -20px;
+        top: -20px;
+      }
+    }
+  }
+}

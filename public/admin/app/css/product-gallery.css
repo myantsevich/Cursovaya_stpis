@@ -1,0 +1,20 @@
+.form-gallery__item {
+  margin-bottom: 40px; }
+  .form-gallery__item-file-remove {
+    color: red;
+    cursor: pointer; }
+    .form-gallery__item-file-remove:hover, .form-gallery__item-file-remove:focus, .form-gallery__item-file-remove:active {
+      color: darkred; }
+  .form-gallery__item-file-image {
+    border-radius: 4px;
+    background: lightgray;
+    height: 120px;
+    position: relative;
+    width: 120px; }
+    .form-gallery__item-file-image img {
+      max-height: 100%;
+      max-width: 100%; }
+    .form-gallery__item-file-image .form-gallery__item-file-remove {
+      position: absolute;
+      right: -20px;
+      top: -20px; }

@@ -1,0 +1,31 @@
+{%- trans_default_domain 'admin' -%}
+{%- form_theme form with ['bootstrap_4_layout.html.twig', 'admin/dashboard/form/common.html.twig'] -%}
+
+<div class="container-fluid mt-3">
+    {{- form_start(form, {attr: {autocomplete: "off"}}) -}}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="mb-3">
+                {%- block form_header '' -%}
+            </h4>
+            {{- form_row(form.header) -}}
+            {{- form_row(form.summary) -}}
+            {{- form_row(form.content) -}}
+            {{- form_row(form.previewImage) -}}
+        </div>
+    </div>
+
+    <hr class="mb-4">
+
+    <div class="row mb-lg-5">
+        <div class="col-sm-6">
+            {{- form_widget(form.saveAndReturn) -}}
+        </div>
+        <div class="col-sm-6">
+            {{- form_widget(form.saveAndEdit) -}}
+        </div>
+    </div>
+
+    {{- form_end(form) -}}
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="BelkinDom\Store\Web\Config"
+            table="bk_web_config"
+            repository-class="BelkinDom\Adapters\Database\Doctrine\ConfigsRepository">
+
+        <id name="configUuid" type="configUuid">
+            <generator strategy="NONE" />
+        </id>
+
+        <field name="leadText" type="translatable"/>
+        <field name="aboutText" type="translatable"/>
+        <field name="orderFlashEnabled" type="boolean"/>
+        <field name="orderFlashText" type="translatable"/>
+        <field name="instagramUrl" length="100"/>
+        <field name="instagramAccessToken" length="500" nullable="true"/>
+        <field name="instagramClientId" length="500" nullable="true"/>
+        <field name="instagramClientSecret" length="500" nullable="true"/>
+    </entity>
+</doctrine-mapping>

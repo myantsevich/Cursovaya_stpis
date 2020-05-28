@@ -1,0 +1,73 @@
+@import '../../node_modules/bootstrap/scss/bootstrap';
+@import './mixins';
+@import './variables';
+@import './material-icons';
+@import './table';
+@import './product-gallery';
+@import './product-stencils';
+@import './form';
+
+.bd-fixed-width {
+    min-width: 1280px;
+}
+
+//login page styles
+.bd-log-align {
+    padding: 8% 0;
+}
+
+.bd-margin {
+    margin: 5% 0;
+}
+
+.btn-primary {
+    background-color: rgb(234,60,61);
+    border-color: rgb(234,60,61);
+}
+
+.btn-primary:hover {
+    background-color: rgb(214,60,61);
+    border-color: rgb(214,60,61);
+}
+
+//navbar styles
+.bd-nav-shadow {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px -1px 0px inset,
+                rgba(0, 0, 0, 0.1) 0px 1px 10px;
+}
+
+.bd-nav-logo {
+    width: 6%;
+    @include bgsizing ($logo, cover, no-repeat, center);
+}
+
+//breadcrumbs
+.bd-margin-bottom {
+    margin-bottom: 16px!important;
+}
+
+//buttons 
+.btn-group {
+    display: flex!important;
+    align-items: center!important;
+}
+
+.bd-btn {
+    margin-right: 8px;
+}
+
+.bd-btn-fixed-width {
+    width: 90px!important;
+    height: 38px!important;
+}
+
+//filter
+.bd-option {
+    padding: 1px 0!important;
+    height: 28px;
+}
+
+//pagination
+.bd-input-width {
+    width: 5%;
+}

@@ -1,0 +1,32 @@
+{%- spaceless -%}
+    <header>
+        <div class="header-content">
+            <a href="{{ path('front_index') }}"><img src="/front/img/logo.png"></a>
+            <div id="special-nav">
+                <a href="{{ path('front_cart') }}" id="basket"
+                        {%- if headerMenu.currentItem == 'cart' %} class="active"{% endif %}>
+                    {{- 'menu.order'|trans({}, 'front') ~ ' (' ~ cart.totalProductsQuantity ~ ')' -}}
+                </a>
+                {% set currentLocale = app.request.locale %}
+                {% for locale in locales %}
+                    <a href="{{ path('change_locale', {'locale': locale}) }}"
+                            {%- if currentLocale == locale %} class="active"{% endif %}>
+                        {{- locale|capitalize -}}
+                    </a>
+                {% endfor %}
+            </div>
+            <nav id="main-menu">
+                <ul>
+                    {%- for item in headerMenu.items -%}
+                        <li>
+                            <a href="{{ path(item.path) }}"
+                                    {%- if headerMenu.currentItem == item.id %} class="active"{% endif %}>
+                                {{- item.title|trans({}, 'front') -}}
+                            </a>
+                        </li>
+                    {%- endfor -%}
+                </ul>
+            </nav>
+        </div>
+    </header>
+{%- endspaceless -%}

@@ -1,0 +1,56 @@
+{% block price_row %}
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.amount) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.currency.isoCode) }}
+        </div>
+    </div>
+{% endblock price_row %}
+
+{% block attachment_row %}
+    <div class="form-attachment">
+        {% if value and value.path %}
+            <div class="form-attachment__image">
+                <img src="{{ value.path }}" alt="{{ value.originalFileName }}">
+            </div>
+        {% endif %}
+    {{ form_widget(form.uploadedFile) }}
+    {{ form_rest(form) }}
+    {{ form_errors(form) }}
+    </div>
+{% endblock attachment_row %}
+
+{% block ckeditor_widget %}
+    {{- form_widget(form) -}}
+    <script>
+        $(function () {
+            CKEDITOR.replace("{{ id }}", {
+                toolbarGroups: [
+                    { name: "clipboard", groups: [ "clipboard", "undo" ] },
+                    { name: "editing", groups: [ "find", "selection", "spellchecker", "editing" ] },
+                    { name: "links", groups: [ "links" ] },
+                    { name: "insert", groups: [ "insert" ] },
+                    { name: "forms", groups: [ "forms" ] },
+                    { name: "tools", groups: [ "tools" ] },
+                    { name: "document", groups: [ "mode", "document", "doctools" ] },
+                    { name: "others", groups: [ "others" ] },
+                    { name: "basicstyles", groups: [ "basicstyles", "cleanup" ] },
+                    { name: "paragraph", groups: [ "list", "indent", "blocks", "align", "bidi", "paragraph" ] },
+                    { name: "styles", groups: [ "styles" ] },
+                    { name: "colors", groups: [ "colors" ] },
+                    { name: "about", groups: [ "about" ] }
+                ],
+                removeButtons: "Underline,Subscript,Superscript,Styles,About,Outdent,Indent,Anchor,SpecialChar,HorizontalRule,Image,Maximize,Scayt,Redo,PasteFromWord,PasteText"
+            });
+        });
+    </script>
+{% endblock ckeditor_widget %}
+
+{% block submit_widget %}
+    {%- set classes = ' btn btn-success btn-block btn-lg d-inline-flex align-content-center justify-content-center' -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ classes)|trim}) -%}
+    {%- set type = type|default('submit') -%}
+    {{ block('button_widget') }}
+{% endblock submit_widget %}

@@ -1,0 +1,14 @@
+{%- extends 'admin/dashboard/layout.html.twig' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        'admin_reviews_cget': 'reviews.list.header',
+        '': 'reviews.edit.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    {%- embed 'admin/dashboard/review/form.html.twig' -%}
+        {%- block form_header -%}{{ 'reviews.edit.header'|trans({}, 'admin') }}{%- endblock -%}
+    {%- endembed-%}
+{%- endblock -%}

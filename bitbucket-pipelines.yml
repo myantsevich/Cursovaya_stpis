@@ -1,0 +1,13 @@
+image: mikalaib/we-host:pipelines
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            - echo "Master Branch"
+            - mkdir -p ~/.ssh
+            - (umask 077; echo $MY_KNOWN_HOSTS | base64 --decode -i >> ~/.ssh/known_hosts)
+            - (umask 077; echo $MY_SSH_KEY | base64 --decode -i > ~/.ssh/id_rsa)
+            - gem install capistrano
+            - gem install capistrano-symfony
+            - cap staging deploy

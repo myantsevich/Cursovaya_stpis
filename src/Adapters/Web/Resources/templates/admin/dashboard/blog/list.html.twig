@@ -1,0 +1,68 @@
+{%- extends "admin/dashboard/layout.html.twig" -%}
+{%- trans_default_domain 'admin' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        '': 'blog.list.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    <div class="container-fluid">
+        <div class="d-inline-flex w-100 justify-content-between">
+            <h1 class="display-4 my-4 d-inline-flex">
+                {{- 'blog.list.header'|trans -}}
+            </h1>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{- 'common.actions.label'|trans -}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{ path('admin_blog_posts_put') }}">
+                        {{- 'blog.actions.new'|trans -}}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">{{ 'blog.table.header.title'|trans }}</th>
+                <th scope="col">{{ 'blog.table.header.summary'|trans }}</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%- for post in list -%}
+                <tr>
+                    <td>{{ post.header.translate(default_locale) }}</td>
+                    <td>{{ post.summary.translate(default_locale) }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle--table-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons md-18">settings</i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item dropdown-item--table-action" href="{{ path('admin_blog_posts_post', {id: post.postUuid}) }}">
+                                    <i class="material-icons md-18">mode_edit</i>&nbsp;
+                                    {{ 'common.actions.edit'|trans -}}
+                                </a>
+                                {#<a class="dropdown-item dropdown-item--table-action" href="#">#}
+                                    {#<i class="material-icons md-18">delete</i>&nbsp;#}
+                                    {#{{ 'common.actions.delete'|trans -}}#}
+                                {#</a>#}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {%- else -%}
+                <tr><td colspan="3">{{ 'blog.table.empty.text'|trans }}</td></tr>
+            {%- endfor -%}
+            </tbody>
+        </table>
+
+        {{- include('admin/dashboard/partials/pager.html.twig', {list: list}) -}}
+    </div>
+{%- endblock -%}

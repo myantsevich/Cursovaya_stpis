@@ -1,0 +1,10 @@
+{%- trans_default_domain 'admin' -%}
+<div class="container-fluid mt-3">
+    {%- for label, messages in app.flashes -%}
+        {%- for message in messages -%}
+            <div class="alert alert-{{ label }}">
+                {{- message|trans -}}
+            </div>
+        {%- endfor -%}
+    {%- endfor -%}
+</div>

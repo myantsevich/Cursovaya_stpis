@@ -1,0 +1,36 @@
+{%- trans_default_domain 'admin' -%}
+
+{%- form_theme form with ['bootstrap_4_layout.html.twig', 'admin/dashboard/form/common.html.twig'] -%}
+{%- form_theme form.baseProduct.gallery 'admin/dashboard/product/form/gallery.html.twig' -%}
+
+<div class="container-fluid mt-3">
+    {{- form_start(form, {attr: {autocomplete: "off"}}) -}}
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="mb-3">{{ 'product.label.general'|trans }}</h4>
+                {{- form_row(form.baseProduct.productUuid) -}}
+                {{- form_row(form.baseProduct.title) -}}
+                {{- form_row(form.category) -}}
+                {{- form_row(form.baseProduct.price) -}}
+                {{- form_row(form.material) -}}
+                {{- form_row(form.baseProduct.summary) -}}
+                {{- form_row(form.baseProduct.description) -}}
+                {{- form_row(form.baseProduct.availability) -}}
+            </div>
+            <div class="col-sm-4">
+                {{- form_row(form.baseProduct.gallery) -}}
+            </div>
+        </div>
+
+        <hr class="mb-4">
+
+        <div class="row mb-lg-5">
+            <div class="col-sm-6">
+                {{- form_widget(form.baseProduct.saveAndReturn) -}}
+            </div>
+            <div class="col-sm-6">
+                {{- form_widget(form.baseProduct.saveAndEdit) -}}
+            </div>
+        </div>
+    {{- form_end(form) -}}
+</div>

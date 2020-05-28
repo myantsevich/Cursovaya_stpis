@@ -1,0 +1,36 @@
+{%- spaceless -%}
+    {%- set action_views_map = {
+        edit: {
+            label: 'common.actions.edit',
+            icon_name: 'mode_edit'
+        },
+        view: {
+            label: 'common.actions.view',
+            icon_name: ''
+        },
+        delete: {
+            label: 'common.actions.delete',
+            icon_name: 'delete'
+        }
+    } -%}
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle--table-action"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+            <i class="material-icons md-18">settings</i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+            {% for key, path in actions %}
+                {%- include 'admin/dashboard/partials/table/actions/action.html.twig' with {
+                    action: {
+                        icon_name: action_views_map[key].icon_name,
+                        label: action_views_map[key].label,
+                        path: path
+                    }
+                } -%}
+            {% endfor %}
+        </div>
+    </div>
+{%- endspaceless -%}

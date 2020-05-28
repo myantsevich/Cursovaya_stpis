@@ -1,0 +1,8 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body_content %}
+    {% include 'admin/dashboard/partials/navbar.html.twig' %}
+    {% block breadcrumbs '' %}
+    {% include 'admin/dashboard/partials/flashes.html.twig' %}
+    {% block content '' %}
+{% endblock %}

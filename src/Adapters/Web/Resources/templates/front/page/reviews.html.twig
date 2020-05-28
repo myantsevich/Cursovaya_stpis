@@ -1,0 +1,12 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    <section class="reviews">
+        {%- for review in reviews -%}
+            <div class="review">
+                <h6 class="review-author">{{ review.authorName.translate(app.request.locale) }}</h6>
+                <p class="review-body">{{ review.body.translate(app.request.locale) | nl2br }}</p>
+            </div>
+        {%- endfor -%}
+    </section>
+{% endblock main %}

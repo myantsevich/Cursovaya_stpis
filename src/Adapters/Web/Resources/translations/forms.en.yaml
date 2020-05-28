@@ -1,0 +1,33 @@
+order:
+    individual:
+        placeholder:
+            personal_name: Name
+            personal_email: E-mail
+            message: I'd like to order...
+            size: Size
+            shape: Shape
+            material: Choose a material
+
+    placeholder:
+        personal_name: Name
+        personal_email: E-mail
+
+contact:
+    placeholder:
+        personal_name: Name
+        personal_email: E-mail
+        personal_phone: Phone number
+        message: Message...
+
+product:
+    material:
+        empty: Choose a material
+        cotton: 100% cotton
+        polyester: Polyester
+        acrylic: Acrylic
+
+flash:
+    message:
+        added: The product added into your cart
+        reply: Thank you for message. We'll reply you soon.
+        product_reply: Thank you for order. We'll contact with you, when it's done.

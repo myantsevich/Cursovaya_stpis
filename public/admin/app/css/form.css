@@ -1,0 +1,17 @@
+.form-collection__item-remove {
+  line-height: 1;
+  padding: 12px 15px; }
+
+.form-attachment__image {
+  align-items: center;
+  border-radius: 4px;
+  background: lightgray;
+  display: flex;
+  justify-content: center;
+  height: 120px;
+  margin-bottom: 20px;
+  position: relative;
+  width: 120px; }
+  .form-attachment__image img {
+    max-height: 100%;
+    max-width: 100%; }

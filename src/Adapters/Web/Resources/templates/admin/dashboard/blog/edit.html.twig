@@ -1,0 +1,16 @@
+{%- extends 'admin/dashboard/layout.html.twig' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        'admin_blog_posts_cget': 'blog.list.header',
+        '': 'blog.edit.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    {%- embed 'admin/dashboard/blog/form.html.twig' -%}
+        {%- block form_header -%}
+            {{- 'blog.edit.header'|trans({}, 'admin') -}}
+        {%- endblock form_header -%}
+    {%- endembed -%}
+{%- endblock -%}

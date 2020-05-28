@@ -1,0 +1,21 @@
+{
+  "name": "bdgulp",
+  "version": "1.0.0",
+  "description": "belkin dom gulp admin project",
+  "main": "index.js",
+  "scripts": {
+    "sass": "gulp sass",
+    "watch": "gulp watch"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "author": "hecate",
+  "license": "ISC"
+}

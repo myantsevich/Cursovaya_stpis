@@ -1,0 +1,12 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    <section class="faq">
+        {% for block in faq.blocks %}
+        <div class="faq-block">
+            <h6 class="faq-question">{{ block.question.translate(app.request.locale) }}</h6>
+            <p class="faq-answer">{{ block.answer.translate(app.request.locale) | nl2br }}</p>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock main %}

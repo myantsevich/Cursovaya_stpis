@@ -1,0 +1,54 @@
+{%- extends "admin/dashboard/layout.html.twig" -%}
+{%- trans_default_domain 'admin' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        '': 'order.product.list.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    <div class="container-fluid">
+        <div class="d-inline-flex w-100 justify-content-between">
+            <h1 class="display-4 my-4 d-inline-flex">{{ 'order.product.list.header'|trans }}</h1>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">{{ 'order.product.table.header.name'|trans }}</th>
+                <th scope="col">{{ 'order.product.table.header.email'|trans }}</th>
+                <th scope="col">{{ 'order.product.table.header.total'|trans }}</th>
+                <th scope="col">{{ 'order.product.table.header.status'|trans }}</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%- for order in list -%}
+                <tr>
+                    <td>{{ order.personName }}</td>
+                    <td>{{ order.personEmail }}</td>
+                    <td>{{ order.totalPrice|money }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle--table-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons md-18">settings</i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item dropdown-item--table-action" href="{{ path('admin_order_get', {id: order.orderUuid}) }}">{#<i class="material-icons md-18">mode_edit</i>&nbsp;#}{{ 'common.actions.view'|trans }}</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {%- else -%}
+                <tr><td colspan="5">{{ 'order.product.table.empty.text'|trans }}</td></tr>
+            {%- endfor -%}
+            </tbody>
+        </table>
+
+        {%- if list.nbResults > 0 -%}
+            {{- pagerfanta(list, 'twitter_bootstrap4') -}}
+        {%- endif -%}
+    </div>
+{%- endblock -%}

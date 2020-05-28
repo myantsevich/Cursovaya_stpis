@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="BelkinDom\Store\Partner\Partner"
+            table="bk_partners"
+            repository-class="BelkinDom\Adapters\Database\Doctrine\PartnersRepository">
+
+        <id name="partnerUuid" type="partnerUuid">
+            <generator strategy="NONE" />
+        </id>
+
+        <field name="name" length="100"/>
+        <field name="discount" type="smallint"/>
+        <field name="code" length="20"/>
+        <many-to-one field="image" target-entity="BelkinDom\Store\File\File" fetch="EAGER">
+            <join-column name="image_uuid" referenced-column-name="file_uuid" on-delete="CASCADE"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

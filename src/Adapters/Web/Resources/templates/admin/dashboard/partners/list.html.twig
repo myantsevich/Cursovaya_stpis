@@ -1,0 +1,64 @@
+{%- extends "admin/dashboard/layout.html.twig" -%}
+{%- trans_default_domain 'admin' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        '': 'partner.list.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    <div class="container-fluid">
+        <div class="d-inline-flex w-100 justify-content-between">
+            <h1 class="display-4 my-4 d-inline-flex">
+                {{ 'partner.list.header'|trans }}
+            </h1>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ 'common.actions.label'|trans }}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{ path('admin_partners_put') }}">{{ 'common.actions.new'|trans }}</a>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">{{ 'partner.table.header.name'|trans }}</th>
+                <th scope="col">{{ 'partner.table.header.discount'|trans }}</th>
+                <th scope="col">{{ 'partner.table.header.code'|trans }}</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%- for partner in list -%}
+                <tr>
+                    <td>{{ partner.name }}</td>
+                    <td>{{ partner.discount }}</td>
+                    <td>{{ partner.code }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle--table-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons md-18">settings</i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item dropdown-item--table-action" href="{{ path('admin_partners_post', {id: partner.partnerUuid}) }}"><i class="material-icons md-18">mode_edit</i>&nbsp;{{ 'common.actions.edit'|trans }}</a>
+                                {#<a class="dropdown-item dropdown-item--table-action" href="#"><i class="material-icons md-18">delete</i>&nbsp;Удалить</a>#}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {%- else -%}
+                <tr><td colspan="4">{{ 'partner.table.empty.text'|trans }}</td></tr>
+            {%- endfor -%}
+            </tbody>
+        </table>
+
+        {%- if list.nbResults > 0 -%}
+            {{- pagerfanta(list, 'twitter_bootstrap4') -}}
+        {%- endif -%}
+    </div>
+{%- endblock -%}

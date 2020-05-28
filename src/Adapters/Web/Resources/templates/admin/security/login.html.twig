@@ -1,0 +1,31 @@
+{% extends "admin/base.html.twig" %}
+
+{% block scripts %}{% endblock %}
+{% block body_attributes %}{% endblock %}
+
+{% block body_content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col d-flex align-center flex-column align-items-center bd-log-align">
+                <div>
+                    <img src="/admin/app/img/thread-ball.png"/>
+
+                    {% if error %}
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    <form action="{{ path('admin_login') }}" method="post">
+                        <div class="form-group justify-content-center d-flex flex-column align-items-center">
+                            <input name="_username" type="text" class="form-control bd-margin"
+                                   value="{{ last_username }}" aria-describedby="Username" placeholder="Enter email"/>
+                            <input name="_password" type="password" class="form-control bd-margin"
+                                   placeholder="Password"/>
+                            <input type="hidden" name="_target_path" value="{{ path('admin_dashboard') }}"/>
+                            <button type="submit" class="btn btn-primary bd-margin">Log In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

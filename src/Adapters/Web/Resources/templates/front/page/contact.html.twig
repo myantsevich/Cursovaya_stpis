@@ -1,0 +1,24 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    <div id="contacts">
+        {%- for message in app.flashes('success') -%}
+            <div class="alert alert-success">
+                {{- message|trans({}, 'forms') -}}
+            </div>
+        {%- endfor -%}
+        <p>{{ 'contacts.header'|trans({}, 'front') }}</p>
+        {{ form_start(form) }}
+            <div class="errors-list">
+                {{ form_errors(form) }}
+            </div>
+            <div id="left-side">
+                {{ form_widget(form.personName) }}
+                {{ form_widget(form.personPhone) }}
+                {{ form_widget(form.personEmail) }}
+            </div>
+            {{ form_widget(form.message) }}
+            <button type="submit" class="app-btn">{{ 'contacts.btn_submit'|trans({}, 'front') }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock main %}

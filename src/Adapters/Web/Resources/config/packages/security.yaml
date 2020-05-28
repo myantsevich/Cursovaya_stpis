@@ -1,0 +1,28 @@
+security:
+    encoders:
+        BelkinDom\Adapters\Web\Security\Auth:
+            algorithm: bcrypt
+
+    providers:
+        users:
+            id: BelkinDom\Adapters\Database\Doctrine\AuthProvider
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin_area:
+            anonymous: ~
+            provider: users
+            form_login:
+                login_path: /admin/login
+                check_path: /admin/login
+            logout:
+                path:   /admin/logout
+                target: /admin/login
+
+    access_control:
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/node_modules, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: IS_AUTHENTICATED_FULLY }

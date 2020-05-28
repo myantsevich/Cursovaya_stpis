@@ -1,0 +1,22 @@
+{%- spaceless -%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title_name }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/admin/app/img/thread-ball.png" rel="icon" type="image/x-icon">
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="/admin/app/css/styles.css" rel="stylesheet">
+    {% endblock %}
+
+    <script src="/admin/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/admin/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/vendors/ckeditor/ckeditor.js"></script>
+</head>
+<body {% block body_attributes -%}class="bd-fixed-width"{%- endblock -%}>
+    {% block body_content '' %}
+    {% block scripts '' %}
+</body>
+</html>
+{%- endspaceless -%}

@@ -1,0 +1,81 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    {%- spaceless -%}
+        {%- for message in app.flashes('success') -%}
+            <div class="alert alert-success">
+                {{- message|trans({}, 'forms') -}}
+            </div>
+        {%- endfor -%}
+
+        {%- if cart.totalProductsQuantity > 0 -%}
+            {{- form_start(orderForm) -}}
+        {%- endif -%}
+
+        {%- if cart.totalProductsQuantity > 0 -%}
+            <table id="basket-table" cellspacing="0" cellpadding="12">
+                <tbody>
+                    <tr>
+                        <td>{{ 'menu.cart.goods'|trans({}, 'front') }}</td>
+                        <td>{{ 'menu.cart.price'|trans({}, 'front') }}</td>
+                        <td>{{ 'menu.cart.quantity'|trans({}, 'front') }}</td>
+                        <td>{{ 'menu.cart.total'|trans({}, 'front') }}</td>
+                        <td>&nbsp;</td>
+                    </tr>
+
+                    {%- for cartItemIndex, cartItem in cart.cartItems -%}
+                    <tr>
+                        <td>
+                            <div class="product">
+                                <a class="img"
+                                   href="{{ productPath(cartItem.product) }}"
+                                   {% if cartItem.product.gallery.mainItem is not null -%}
+                                       style="background-image: url('{{ cartItem.product.gallery.mainItem.image.path }}')"
+                                   {%- endif -%}></a>
+                                <a href="{{ productPath(cartItem.product) }}">{{ cartItem.product.title.translate(app.request.locale) }}</a>
+                            </div>
+                        </td>
+                        <td>{{ cartItem.product.price|money }}</td>
+                        <td>
+                            <div class="qty">
+                                {{- form_widget(orderForm.orderItems[cartItemIndex].quantity) -}}
+                                {{- form_errors(orderForm.orderItems[cartItemIndex].quantity) -}}
+                            </div>
+                        </td>
+                        <td>{{ cartItem.price|money }}</td>
+                        <td>
+                            <a href="{{ path('front_cart_product_remove', {id: cartItem.product.productUuid}) }}" class="remove"></a>
+                        </td>
+                    </tr>
+                    {%- endfor -%}
+
+                    <tr>
+                        <td>{{ 'menu.cart.total_price'|trans({}, 'front') }}</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>{{ cart.totalPrice|money }}</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="order-info">
+                <div class="order-info-widget">
+                    {{- form_widget(orderForm.personName) -}}
+                    {{- form_errors(orderForm.personName) -}}
+                </div>
+                <div class="order-info-widget">
+                    {{- form_widget(orderForm.personEmail) -}}
+                    {{- form_errors(orderForm.personEmail) -}}
+                </div>
+            </div>
+
+            <button type="submit" class="app-btn app-btn-lg app-btn--cart">{{ 'menu.cart.order'|trans({}, 'front') }}</button>
+            {{- form_end(orderForm) -}}
+        {%- else -%}
+            <div class="cart-empty">
+                {{ 'menu.cart.empty'|trans({}, 'front') }}
+            </div>
+        {%- endif -%}
+    {%- endspaceless -%}
+{% endblock %}

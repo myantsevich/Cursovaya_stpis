@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light bd-nav-shadow">
+    <a class="navbar-brand bd-nav-logo" href="{{ path('admin_dashboard') }}">&nbsp;</a>
+
+    <ul class="navbar-nav mr-auto flex-row w-100">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle hover" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Магазин
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ path('admin_products_regular_cget') }}">Товары</a>
+                <a class="dropdown-item" href="{{ path('admin_products_rug_stencil_cget') }}">Схемы ковров</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle hover" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Заказы
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ path('admin_order_cget') }}">Товарные</a>
+                <a class="dropdown-item" href="{{ path('admin_order_individual_cget') }}">Индивидуальные</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_contact_cget') }}">Сообщения</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_blog_posts_cget') }}">Блог</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_reviews_cget') }}">Отзывы</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_partners_cget') }}">Партнеры</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_faq') }}">FAQ</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_config') }}">Настройки</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="{{ path('admin_logout') }}">
+                <span class="mr-1">Выйти</span>
+                <i class="material-icons">exit_to_app</i>
+            </a>
+        </li>
+    </ul>
+</nav>

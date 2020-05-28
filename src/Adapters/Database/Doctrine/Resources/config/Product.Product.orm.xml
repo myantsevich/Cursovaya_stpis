@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="BelkinDom\Store\Product\Product"
+            repository-class="BelkinDom\Adapters\Database\Doctrine\ProductsRepository">
+        <field name="material" type="translatable"/>
+
+        <many-to-one field="category" target-entity="BelkinDom\Store\Product\Category\Category" fetch="EAGER">
+            <join-column name="product_category_uuid" referenced-column-name="category_uuid"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

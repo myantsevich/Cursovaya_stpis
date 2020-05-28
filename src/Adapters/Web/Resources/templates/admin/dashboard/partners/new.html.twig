@@ -1,0 +1,16 @@
+{%- extends 'admin/dashboard/layout.html.twig' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        'admin_partners_cget': 'partner.list.header',
+        '': 'partner.new.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    {%- embed 'admin/dashboard/partners/form.html.twig' -%}
+        {%- block form_header -%}
+            {{- 'partner.new.header'|trans({}, 'admin') -}}
+        {%- endblock form_header -%}
+    {%- endembed -%}
+{%- endblock -%}

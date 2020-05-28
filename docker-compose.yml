@@ -1,0 +1,40 @@
+version: "3.1"
+
+services:
+    db:
+        image: mysql
+        container_name: bd-mysql
+        working_dir: /application
+        ports:
+            - 3308:3306
+        volumes:
+            - ./var/data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    php:
+        build: docker/php-fpm
+        container_name: bd-php
+        working_dir: /application
+        env_file:
+            - .env
+        volumes:
+            - .:/application:cached
+        links:
+            - db
+        tty: true
+
+    nginx:
+        image: nginx:latest
+        container_name: bd-nginx
+        working_dir: /application
+        ports:
+            - 11235:80
+        links:
+            - php
+        volumes:
+            - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            - .:/application:cached

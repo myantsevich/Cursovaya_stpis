@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="BelkinDom\Store\Order\OrderItem" table="bk_orders_items">
+
+        <id name="orderItemUuid" type="orderItemUuid">
+            <generator strategy="NONE" />
+        </id>
+
+        <many-to-one field="product" target-entity="BelkinDom\Store\Product\AbstractProduct" fetch="EAGER">
+            <join-column name="product_uuid" referenced-column-name="product_uuid" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <field name="quantity" type="smallint"/>
+    </entity>
+</doctrine-mapping>

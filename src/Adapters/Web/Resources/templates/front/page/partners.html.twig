@@ -1,0 +1,19 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    <section id="partners">
+        {%- for partner in partners -%}
+            <div class="partner">
+                <div class="partner-logo">
+                    <img src="{{ partner.image.path }}">
+                </div>
+                <div class="partner-discount">
+                    <h2>{{ 'partners.sale'|trans({}, 'front') }} ~ -{{ partner.discount }}%</h2>
+                </div>
+                <div class="partner-code">
+                    {{ 'partners.promo'|trans({}, 'front') }}: <span>{{ partner.code }}</span>
+                </div>
+            </div>
+        {%- endfor -%}
+    </section>
+{% endblock main %}

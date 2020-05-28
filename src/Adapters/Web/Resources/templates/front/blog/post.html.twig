@@ -1,0 +1,18 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    {%- spaceless -%}
+        <ul id="pass">
+            <li><a href="{{ path('front_blog') }}">{{ 'menu.items.blog'|trans({}, 'front') }}</a></li>
+            <li>{{- post.header.translate(app.request.locale) -}}</li>
+        </ul>
+
+        <div id="blogpost">
+            <h1>{{ post.header.translate(app.request.locale) }}</h1>
+            <div class="blogpost-image-w">
+                <div class="blogpost-image" style="background-image: url('{{ post.previewImage.path }}')"></div>
+            </div>
+            <p>{{ post.content.translate(app.request.locale)|raw }}</p>
+        </div>
+    {%- endspaceless -%}
+{% endblock %}

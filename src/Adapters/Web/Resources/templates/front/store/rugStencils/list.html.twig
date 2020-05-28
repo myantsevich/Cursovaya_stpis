@@ -1,0 +1,17 @@
+{%- extends 'front/base.html.twig' -%}
+
+{%- block main -%}
+    {%- spaceless -%}
+        <div class="store-menu">
+            {{- include('front/store/partials/menu.html.twig', {current: 'scheme'}) -}}
+        </div>
+
+        <div class="products products--rug-stencil app-container">
+            {%- for product in list -%}
+                {{- include('front/store/partials/rugStencilProductPreview.html.twig', {product: product}) -}}
+            {%- endfor -%}
+        </div>
+
+        {{- include('front/store/partials/pager.html.twig', {pager: list}) -}}
+    {%- endspaceless -%}
+{%- endblock main -%}

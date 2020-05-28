@@ -1,0 +1,8 @@
+{%- trans_default_domain 'admin' -%}
+
+{%- spaceless -%}
+    <a class="dropdown-item dropdown-item--table-action" href="{{ action.path }}">
+        <i class="material-icons md-18">{{ action.icon_name }}</i>&nbsp;
+        {{ action.label|trans -}}
+    </a>
+{%- endspaceless -%}

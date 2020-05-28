@@ -1,0 +1,8 @@
+{%- spaceless -%}
+    {%- if list.nbResults > 0 -%}
+        {{- pagerfanta(list, 'twitter_bootstrap', {
+            css_prev_class: 'hidden',
+            css_next_class: 'hidden',
+        }) -}}
+    {%- endif -%}
+{%- endspaceless -%}

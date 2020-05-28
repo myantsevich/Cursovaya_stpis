@@ -1,0 +1,59 @@
+{%- block collection_row -%}
+    {%- spaceless -%}
+        <div class="form-collection" data-counter="{{ form|length }}">
+            {{- form_errors(form) -}}
+            <div class="form-collection__list" data-prototype="{{ form_row(prototype)|e('html') }}">
+                {%- for block in form -%}
+                    {{- form_row(block) -}}
+                {%- endfor -%}
+            </div>
+            <div>
+                <button class="btn btn-block btn-outline-dark d-inline-flex align-content-center justify-content-center"
+                        id="faq-blocks-add">
+                    <i class="material-icons">add</i>
+                    {{ 'faq.actions.add_block'|trans({}, 'admin') }}
+                </button>
+            </div>
+
+            <script>
+                (function () {
+                    var $collection = $(".form-collection"),
+                        $items = $collection.find(".form-collection__list"),
+                        counter = parseInt($collection.data("counter")) + 1;
+
+                    $("#faq-blocks-add").on("click", function (e) {
+                        e.preventDefault();
+
+                        var protoString = $items.data("prototype"),
+                            $item = $(protoString.replace(/__name__/g, counter));
+
+                        $items.append($item);
+                        counter += 1;
+                    });
+
+                    $collection.on("click", ".form-collection__item-remove", function () {
+                        var $item = $(this).parents(".form-collection__item");
+                        $item.remove();
+                    });
+                })();
+            </script>
+        </div>
+    {%- endspaceless -%}
+{%- endblock collection_row -%}
+
+{%- block faq_block_row -%}
+    <div class="form-collection__item">
+        <div class="row">
+            <div class="col-sm-11">
+                {{- form_rest(form) -}}
+                {{- form_errors(form) -}}
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-outline-danger form-collection__item-remove">
+                    <i class="material-icons">delete</i>
+                </button>
+            </div>
+        </div>
+        <hr>
+    </div>
+{%- endblock faq_block_row -%}

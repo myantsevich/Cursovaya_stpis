@@ -1,0 +1,37 @@
+.form-stencils {
+  &__item {
+    margin-bottom: 40px;
+  }
+
+  &__file {
+    &-remove {
+      color: red;
+      cursor: pointer;
+
+      &:hover, &:focus, &:active {
+        color: darkred;
+      }
+    }
+
+    &-doc {
+      height: 40px;
+      padding-right: 50px;
+      position: relative;
+
+      &-name {
+        color: #333;
+        font-size: 18px;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .form-stencils__file-remove {
+        position: absolute;
+        right: 0;
+        top: 4px;
+      }
+    }
+  }
+}

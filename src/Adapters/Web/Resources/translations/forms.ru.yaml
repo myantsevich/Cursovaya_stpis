@@ -1,0 +1,38 @@
+common:
+    buttons:
+        save_and_edit: Сохранить и остаться
+        save_and_return: Сохранить и вернуться
+
+order:
+    individual:
+        placeholder:
+            personal_name: Имя
+            personal_email: Контактный e-mail
+            message: Хочу заказать...
+            size: Размер
+            shape: Форма
+            material: Выбора материала
+
+    placeholder:
+        personal_name: Имя
+        personal_email: Контактный e-mail
+
+contact:
+    placeholder:
+        personal_name: Имя
+        personal_email: Контактный e-mail
+        personal_phone: Телефон
+        message: Сообщение...
+
+product:
+    material:
+        empty: Выбор материала
+        cotton: 100% хлопок
+        polyester: Полиэстр
+        acrylic: Акрил
+
+flash:
+    message:
+        added: Товар добавлен в корзину
+        reply: Благодарим за обращение. Мы скоро вам ответим.
+        product_reply: Благодарим за заказ. Мы свяжемся с вами, когда он будет готов.

@@ -1,0 +1,5 @@
+{%- spaceless -%}
+    {%- if list.haveToPaginate -%}
+        {{- pagerfanta(list, 'twitter_bootstrap4', {prev_message: '←', next_message: '→'}) -}}
+    {%- endif -%}
+{%- endspaceless -%}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="BelkinDom\Store\Contact\Contact"
+            table="bk_contacts"
+            repository-class="BelkinDom\Adapters\Database\Doctrine\ContactsRepository">
+
+        <id name="contactUuid" type="contactUuid">
+            <generator strategy="NONE" />
+        </id>
+
+        <field name="personName" length="100"/>
+        <field name="personEmail" length="100"/>
+        <field name="personPhone" length="100"/>
+        <field name="message" length="250"/>
+    </entity>
+</doctrine-mapping>

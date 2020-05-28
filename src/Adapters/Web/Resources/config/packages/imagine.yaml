@@ -1,0 +1,17 @@
+liip_imagine:
+    driver: "gd"
+    cache:                default
+    data_loader:          default
+    default_image:        null
+    filter_sets:
+        cache: ~
+        product_square_thumb:
+            filters:
+                thumbnail:
+                    size: [200, 200]
+                    mode: outbound
+        product_landscape_thumb:
+            filters:
+                thumbnail:
+                    size: [1170, 600]
+                    mode: outbound

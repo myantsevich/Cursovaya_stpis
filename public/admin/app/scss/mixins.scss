@@ -1,0 +1,6 @@
+@mixin bgsizing ($bgimg, $bgsize, $bgrepeat, $bgposition) {
+    background-image: $bgimg;
+    background-size: $bgsize;
+    background-repeat: $bgrepeat;
+    background-position: $bgposition;
+}

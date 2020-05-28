@@ -1,0 +1,18 @@
+{%- spaceless -%}
+    <div class="rug-stencil-preview">
+        <a class="rug-stencil-preview__image" href="{{ productPath(product) }}">
+             {%- if product.gallery.mainItem is not null -%}
+                 <img src="{{ product.gallery.mainItem.image.path | imagine_filter('product_square_thumb') }}" width="200" height="200">
+             {%- endif -%}
+        </a>
+        <div class="rug-stencil-preview__meta">
+            <h3 class="rug-stencil-preview__title">
+                <a href="{{ productPath(product) }}">{{ product.title.translate(app.request.locale) }}</a>
+            </h3>
+            {{- include('front/store/partials/productPrice.html.twig', {price: product.price}) -}}
+            <a href="{{ productPath(product) }}" class="app-btn app-btn-sm">
+                {{ 'store.info'|trans({}, 'front') }}
+            </a>
+        </div>
+    </div>
+{%- endspaceless -%}

@@ -1,0 +1,22 @@
+{%- spaceless -%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Belkin Dom</title>
+        {#<meta name="viewport" content="width=1170, initial-scale=1.0, shrink-to-fit=no">#}
+        <meta name="viewport" content="width=device-width">
+        <link href="/admin/app/img/thread-ball.png" rel="icon" type="image/x-icon">
+        <link href="/front/css/style.css" rel="stylesheet">
+        <script src="/admin/node_modules/jquery/dist/jquery.min.js"></script>
+        {%- block stylesheets '' -%}
+    </head>
+    <body>
+        {{- render(controller('BelkinDom\\Adapters\\Web\\Controller\\Front\\IndexController::header')) -}}
+        <main class="main-container">
+            {%- block main '' -%}
+        </main>
+        {{- render(controller('BelkinDom\\Adapters\\Web\\Controller\\Front\\IndexController::footer')) -}}
+        {%- block javascripts '' -%}
+    </body>
+</html>
+{%- endspaceless -%}

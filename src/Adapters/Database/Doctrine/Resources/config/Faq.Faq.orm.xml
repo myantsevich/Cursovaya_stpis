@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="BelkinDom\Store\Faq\Faq"
+            table="bk_faq"
+            repository-class="BelkinDom\Adapters\Database\Doctrine\FaqRepository">
+
+        <id name="faqUuid" type="faqUuid">
+            <generator strategy="NONE" />
+        </id>
+
+        <field name="blocks" type="array"/>
+    </entity>
+</doctrine-mapping>

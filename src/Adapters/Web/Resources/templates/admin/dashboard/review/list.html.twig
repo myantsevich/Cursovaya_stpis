@@ -1,0 +1,56 @@
+{%- extends "admin/dashboard/layout.html.twig" -%}
+{%- trans_default_domain 'admin' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        '': 'reviews.list.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    <div class="container-fluid">
+        <div class="d-inline-flex w-100 justify-content-between">
+            <h1 class="display-4 my-4 d-inline-flex">{{ 'reviews.list.header'|trans }}</h1>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{- 'common.actions.label'|trans -}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{ path('admin_reviews_put') }}">
+                        {{- 'reviews.actions.new'|trans -}}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">{{ 'reviews.table.header.author_name'|trans }}</th>
+                <th scope="col">{{ 'reviews.table.header.body'|trans }}</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%- for review in list -%}
+                <tr>
+                    <td>{{ review.authorName.translate(default_locale) }}</td>
+                    <td>{{ review.body.translate(default_locale) }}</td>
+                    <td>
+                        {%- include 'admin/dashboard/partials/table/actions/actions.html.twig' with {actions: {
+                            edit: path('admin_reviews_post', {id: review.reviewUuid})
+                        }} -%}
+                    </td>
+                </tr>
+            {%- else -%}
+                <tr><td colspan="3">{{ 'reviews.table.empty.text'|trans }}</td></tr>
+            {%- endfor -%}
+            </tbody>
+        </table>
+
+        {%- if list.nbResults > 0 -%}
+            {{- pagerfanta(list, 'twitter_bootstrap4') -}}
+        {%- endif -%}
+    </div>
+{%- endblock -%}

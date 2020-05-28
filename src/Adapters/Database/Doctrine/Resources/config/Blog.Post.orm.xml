@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="BelkinDom\Store\Blog\Post"
+            table="bk_blog_posts"
+            repository-class="BelkinDom\Adapters\Database\Doctrine\PostsRepository">
+
+        <id name="postUuid" type="postUuid">
+            <generator strategy="NONE" />
+        </id>
+
+        <field name="header" type="translatable"/>
+        <field name="summary" type="translatable"/>
+        <field name="content" type="translatable"/>
+        <many-to-one field="previewImage" target-entity="BelkinDom\Store\File\File" fetch="EAGER">
+            <join-column name="preview_image_uuid" referenced-column-name="file_uuid" on-delete="CASCADE"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

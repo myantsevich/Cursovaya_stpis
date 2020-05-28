@@ -1,0 +1,33 @@
+{%- spaceless -%}
+    <div class="regular-product-preview">
+        <div class="regular-product-preview__gallery">
+            <div class="regular-product-preview__gallery-controls">
+                <a href="" class="regular-product-preview__gallery-control prev">
+                    <button><img src="/front/img/slider-arrow.svg" width="30"></button>
+                </a>
+                <a href="" class="regular-product-preview__gallery-control next">
+                    <button><img src="/front/img/slider-arrow.svg" width="30"></button>
+                </a>
+            </div>
+            <ul class="regular-product-preview__gallery-items">
+                {%- for galleryItem in product.gallery.items -%}
+                    <li class="regular-product-preview__gallery-item">
+                        <img src="{{ galleryItem.image.path | imagine_filter('product_landscape_thumb') }}" width="1170" height="600">
+                    </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+        <div class="regular-product-preview__meta">
+            <a href="{{ path('front_store_category_product_get', {slug: category.slug, id: product.productUuid}) }}" class="app-btn app-btn--regular-product-preview-more">
+                {{ 'store.info'|trans({}, 'front') }}
+            </a>
+            <h3 class="regular-product-preview__title">
+                <a href="{{ path('front_store_category_product_get', {slug: category.slug, id: product.productUuid}) }}">
+                    {{- product.title.translate(app.request.locale) -}}
+                </a>
+            </h3>
+            <div class="regular-product-preview__summary">{{ product.summary.translate(app.request.locale) }}</div>
+            <div class="regular-product-preview__material">{{ product.material.translate(app.request.locale) }}</div>
+        </div>
+    </div>
+{%- endspaceless -%}

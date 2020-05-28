@@ -1,0 +1,7 @@
+twig:
+    paths: ['%kernel.project_dir%/src/Adapters/Web/Resources/templates']
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        title_name: 'BelkinDom online Store'
+        default_locale: '%kernel.default_locale%'

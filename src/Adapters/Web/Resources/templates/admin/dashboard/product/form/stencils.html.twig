@@ -1,0 +1,78 @@
+{%- trans_default_domain 'admin' -%}
+
+{%- block collection_row -%}
+    {%- spaceless -%}
+        <h4 class="mb-3 d-flex align-items-center justify-content-between">
+            <span>{{ 'product.label.stencils'|trans }}</span>
+            <a role="button" tabindex="-1" id="product-stencils-add" class="text-success">
+                <i class="material-icons md-36">add_box</i>
+            </a>
+        </h4>
+        <div class="form-stencils" data-counter="{{ form|length }}">
+            <div class="form-stencils__list" data-prototype="{{ form_row(prototype)|e('html') }}">
+                {%- for rugStencil in form -%}
+                    {{- form_row(rugStencil) -}}
+                {%- endfor -%}
+            </div>
+            {{- form_errors(form) -}}
+
+            <script>
+                (function () {
+                    var $collection = $(".form-stencils"),
+                        $items = $collection.find(".form-stencils__list"),
+                        counter = parseInt($collection.data("counter")) + 1;
+
+                    $("#product-stencils-add").on("click", function (e) {
+                        e.preventDefault();
+
+                        var protoString = $items.data("prototype"),
+                            $item = $(protoString.replace(/__name__/g, counter));
+
+                        $items.append($item);
+                        counter += 1;
+                    });
+
+                    $collection.on("click", ".form-stencils__file-remove", function () {
+                        var $item = $(this).parents(".form-stencils__item");
+                        $item.remove();
+                    });
+                })();
+            </script>
+        </div>
+    {%- endspaceless -%}
+{%- endblock collection_row -%}
+
+{%- block rug_stencil_row -%}
+    <div class="form-stencils__item">
+        {{- form_row(form.file) -}}
+        {{- form_rest(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock rug_stencil_row -%}
+
+{%- block attachment_row -%}
+    {%- spaceless -%}
+        <div class="form-stencils__file">
+            {%- if value.path -%}
+                <div class="form-stencils__file-doc d-flex align-items-center">
+                    <i class="material-icons md-36">insert_drive_file</i>
+                    <span class="form-stencils__file-doc-name">{{ value.originalFileName }}</span>
+                    <a role="button" tabindex="-1" class="form-stencils__file-remove">
+                        <i class="material-icons md-36">remove_circle</i>
+                    </a>
+                    <div class="d-none">{{ form_widget(form.uploadedFile) }}</div>
+                </div>
+            {%- else -%}
+                <div class="form-stencils__file-widget d-flex align-items-center justify-content-between">
+                    {{- form_widget(form.uploadedFile) -}}
+                    <a role="button" tabindex="-1" class="form-stencils__file-remove">
+                        <i class="material-icons md-36">remove_circle</i>
+                    </a>
+                </div>
+            {%- endif -%}
+            {{- form_errors(form.uploadedFile) -}}
+            {{- form_rest(form) -}}
+            {{- form_errors(form) -}}
+        </div>
+    {%- endspaceless -%}
+{%- endblock attachment_row -%}

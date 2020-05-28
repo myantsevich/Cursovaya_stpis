@@ -1,0 +1,80 @@
+{%- extends 'admin/dashboard/layout.html.twig' -%}
+{%- trans_default_domain 'admin' -%}
+
+{%- block breadcrumbs -%}
+    {%- include 'admin/dashboard/partials/breadcrumbs.html.twig' with { breadcrumbs: {
+        'admin_order_cget': 'order.product.list.header',
+        '': 'order.product.view.header'
+    } } -%}
+{%- endblock breadcrumbs -%}
+
+{%- block content -%}
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="mb-3">{{ 'order.product.view.header'|trans }}</h4>
+
+                <table class="table table-striped">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="80%">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td><b>{{ 'order.product.table.header.name'|trans }}</b></td>
+                            <td>{{ order.personName }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>{{ 'order.product.table.header.email'|trans }}</b></td>
+                            <td>{{ order.personEmail }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>{{ 'order.product.table.header.total'|trans }}</b></td>
+                            <td>{{ order.totalPrice|money }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>{{ 'order.product.table.header.status'|trans }}</b></td>
+                            <td>{{ order.status }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h6 class="mb-3">{{ 'order.product.list.products'|trans }}</h6>
+
+                <table class="table table-striped">
+                    <colgroup>
+                        <col width="80%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>{{ 'order.product.table.header.product.name'|trans }}</th>
+                            <th>{{ 'order.product.table.header.product.qty'|trans }}</th>
+                            <th>{{ 'order.product.table.header.product.total'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%- for orderItem in order.orderItems -%}
+                            <tr>
+                                <td><a href="{{ adminProductPath(orderItem.product) }}">{{ orderItem.product.title.translate(default_locale) }}</a></td>
+                                <td>{{ orderItem.quantity }}</td>
+                                <td>{{ orderItem.price|money }}</td>
+                            </tr>
+                        {%- endfor -%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr class="mb-4">
+
+        <div class="row mb-lg-5">
+            <div class="col-sm-2">
+                <a href="{{ path('admin_order_cget') }}" class="btn btn-outline-secondary btn-block btn-lg d-inline-flex align-content-center justify-content-center">
+                    <i class="material-icons mr-2 md-30">arrow_back</i> {{ 'common.actions.back'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{%- endblock -%}

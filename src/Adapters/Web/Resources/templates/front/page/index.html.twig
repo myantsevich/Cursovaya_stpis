@@ -1,0 +1,43 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    <div id="picture">
+        {{- config.leadText.translate(app.request.locale)|raw -}}
+        <a href="{{ path('front_store') }}">{{ 'about.go_to_store'|trans({}, 'front') }}</a>
+    </div>
+
+    <div class="container">
+        {%- if 0 < lastProducts|length -%}
+            <div id="thread-ball">
+                <img src="/front/img/thread-ball.png">
+            </div>
+            <h1>{{ 'about.latest_news'|trans({}, 'front') }}</h1>
+            <div class="item-list">
+                <ul>
+                    {%- for product in lastProducts|slice(0, 4) -%}
+                        <li>{% include 'front/store/partials/productPreview.html.twig' -%}</li>
+                    {%- endfor -%}
+                </ul>
+            </div>
+        {%- endif -%}
+
+        <div id="about-me">
+            <h1>{{ 'about.about_me'|trans({}, 'front') }}</h1><br/>
+            <p>{{ config.aboutText.translate(app.request.locale)|nl2br }}</p>
+        </div>
+
+        <div id="follow">
+            <div id="photos">
+                <ul>
+                    {% for imgUrl in instagramRecentPosts %}
+                        <li><img src="{{ imgUrl }}" width="250"></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <a href="{{ config.instagramUrl }}" target="_blank">
+                {{ 'about.whatch_us'|trans({}, 'front') }}
+                <img src="/front/img/thread-ball-2.png">
+            </a>
+        </div>
+    </div>
+{% endblock main %}

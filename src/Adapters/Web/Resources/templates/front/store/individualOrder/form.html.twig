@@ -1,0 +1,30 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    <div class="store-menu">
+        {{- include('front/store/partials/menu.html.twig', {current: 'individual-order'}) -}}
+    </div>
+
+    {%- for message in app.flashes('success') -%}
+        <div class="alert alert-success">
+            {{- message -}}
+        </div>
+    {%- endfor -%}
+
+    <div id="order-form">
+        {{ form_start(form) }}
+            <div class="errors-list">
+                {{ form_errors(form) }}
+            </div>
+            {{ form_widget(form.personName) }}
+            {{ form_widget(form.personEmail) }}
+            {{ form_widget(form.message) }}
+            {{ form_widget(form.size) }}
+            {{ form_widget(form.shape) }}
+            <div id="select">
+                {{ form_widget(form.material) }}
+            </div>
+        <button type="submit" class="app-btn">{{ 'contacts.btn_submit'|trans({}, 'front') }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock main %}

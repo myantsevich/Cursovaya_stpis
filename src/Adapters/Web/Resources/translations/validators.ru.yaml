@@ -1,0 +1,150 @@
+order:
+    exception:
+        person_name:
+            not_blank: Введите ваше имя
+            max_length: Имя слишком длинное. Ограничтесь {{ limit }} символами
+        person_email:
+            not_blank: Введите контактный е-mail
+            not_valid_email: E-mail, который вы ввели, не похож на настоящий
+            max_length: Е-mail слишком длинный. Ограничтесь {{ limit }} символами
+
+    item:
+        exception:
+            quantity:
+                not_blank: Введите количество товара
+                min: Не меньше {{ limit }}
+                max: Не больше {{ limit }}
+
+    individual:
+        exception:
+            person_name:
+                not_blank: Введите ваше имя
+                max_length: Имя слишком длинное. Ограничтесь {{ limit }} символами
+            person_email:
+                not_blank: Введите контактный е-mail
+                not_valid_email: E-mail, который вы ввели, не похож на настоящий
+                max_length: Е-mail слишком длинный. Ограничтесь {{ limit }} символами
+            message:
+                not_blank: Вы ничего не рассказали о своем заказе
+                max_length: Ваше описание заказа не должно превышать {{ limit }} символов
+            size:
+                not_blank: Введите предполагаемый размер
+                max_length: При описании размера ограничтесь {{ limit }} символами
+            shape:
+                not_blank: Опишите форму изделия
+                max_length: При описании формы ограничтесь {{ limit }} символами
+            material:
+                not_blank: Выберите материал для изделия
+                invalid_choice: Выберите материал для изделия
+
+contact:
+    exception:
+        person_name:
+            not_blank: Введите ваше имя
+            max_length: Имя слишком длинное. Ограничтесь {{ limit }} символами
+        person_email:
+            not_blank: Введите контактный е-mail
+            not_valid_email: E-mail, который вы ввели, не похож на настоящий
+            max_length: Е-mail слишком длинный. Ограничтесь {{ limit }} символами
+        person_phone:
+            not_blank: Введите контактный е-mail
+            not_valid_phone: Отформатируйте телефон вот так +375295555555
+            max_length: Е-mail слишком длинный. Ограничтесь {{ limit }} символами
+        message:
+            not_blank: Вы ничего не написали
+            max_length: Ваше сообщение не должно превышать {{ limit }} символов
+
+blog:
+    post:
+        exception:
+            header:
+                not_blank: Заголовок обязателен
+                max_length: Заголовок не может быть больше {{ limit }} символов
+            summart:
+                not_blank: Опсиание обязательно
+                max_length: Опсиание не может быть больше {{ limit }} символов
+            content:
+                not_blank: Тело поста обязателно
+                max_length: Тело поста не может быть больше {{ limit }} символов
+
+faq:
+    block:
+        exception:
+            question:
+                not_blank: Введите вопрос
+                max_length: Вопрос слишком длинный. Ограничтесь {{ limit }} символами
+            answer:
+                not_blank: Введите ответ
+                max_length: Ответ слишком длинный. Ограничтесь {{ limit }} символами
+
+partner:
+    exception:
+        name:
+            not_blank: Введите имя партнера
+            max_length: Имя слишком длинное. Ограничтесь {{ limit }} символами
+        discount:
+            not_blank: Введите размер скидки
+            min: Скидка не может быть меньше {{ limit }}%
+            max: Скидка не может быть больше {{ limit }}%
+        code:
+            not_blank: Введите код партнера
+
+config:
+    exception:
+        lead_text:
+            not_blank: Введите текст над картинкой
+            max_length: Текст не должен быть больше {{ limit }} символов
+        about_text:
+            not_blank: Введите текст обо мне
+            max_length: Текст не должен быть больше {{ limit }} символов
+        order_flash_text:
+            not_blank: Введите текст флеш-сообщения
+            max_length: Текст не должен быть больше {{ limit }} символов
+        instagram_url:
+            not_blank: Введите ссылку на инстаграм
+            max_length: Ссылка не должна быть больше {{ limit }} символов
+            url_invalid: Эта ссылка невалидная
+        instagram_access_token:
+            max_length: Токен не должен быть больше {{ limit }} символов
+        instagram_client_id:
+            max_length: Client ID не должен быть больше {{ limit }} символов
+        instagram_client_secret:
+            max_length: Client Secret не должен быть больше {{ limit }} символов
+
+product:
+    exception:
+        title:
+            not_blank: Введите название
+            max_length: Название слишком длинное. Ограничтесь {{ limit }} символами
+        summary:
+            not_blank: Введите короткое описание
+            max_length: Описание слишком длинное. Ограничтесь {{ limit }} символами
+        description:
+            not_blank: Введите полное описание
+            max_length: Полное описание слишком длинное. Ограничтесь {{ limit }} символами
+        category:
+            not_blank: Категория обязательна
+        material:
+            not_blank: Введите материал
+            max_length: Описание материала слишком длинное. Ограничтесь {{ limit }} символами
+
+reviews:
+    exception:
+        author_name:
+            not_blank: Введите имя
+            max_length: Имя слишком длинное. Ограничтесь {{ limit }} символами
+        body:
+            not_blank: Введите отзыв
+            max_length: Отзыв слишком длинный. Ограничтесь {{ limit }} символами
+
+currency:
+    exception:
+        iso_code:
+            invalid_choice: Выберите код валюты из предложенных
+
+price:
+    exception:
+        amount:
+            not_blank: Введите цену
+            not_null: Введите цену
+            negative: Цена не может быть отрицательной

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="BelkinDom\Store\Product\RugStencilProduct"
+            repository-class="BelkinDom\Adapters\Database\Doctrine\RugStencilProductsRepository">
+        <many-to-many field="stencils" target-entity="BelkinDom\Store\Product\RugStencil\RugStencil" fetch="EAGER">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-table name="bk_products_rug_stencils_stencils">
+                <join-columns>
+                    <join-column name="product_uuid" referenced-column-name="product_uuid"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="rug_stencil_uuid" referenced-column-name="rug_stencil_uuid" unique="true"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+    </entity>
+</doctrine-mapping>

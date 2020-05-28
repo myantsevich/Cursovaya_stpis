@@ -1,0 +1,29 @@
+{%- set menu = [
+    {
+        key: 'in-stock',
+        value: 'store.available',
+        path: 'front_store'
+    }, {
+        key: 'individual-order',
+        value: 'store.order',
+        path: 'front_store_individual_order'
+    }, {
+        key: 'scheme',
+        value: 'store.scheme',
+        path: 'front_store_rug_stencils_products'
+    }
+] -%}
+
+{%- spaceless -%}
+<div class="store-menu">
+    <ul>
+        {%- for item in menu -%}
+            <li>
+                <a href="{{ path(item.path) }}" class="icon {{ item.key ~ (current == item.key ? ' active' : '') }}">
+                    {{- item.value|trans({}, 'front') -}}
+                </a>
+            </li>
+        {%- endfor -%}
+    </ul>
+</div>
+{%- endspaceless -%}

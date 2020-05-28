@@ -1,0 +1,44 @@
+menu:
+    order: Корзина
+    cart:
+        goods: Товар
+        price: Цена
+        quantity: Количество
+        total: Сумма
+        total_price: Общая сумма
+        order: Оформить заказ
+        empty: Корзина пуста
+    items:
+        about_us: О нас
+        store: Магазин
+        blog: Блог
+        faq: FAQ
+        contacts: Контакты
+        feedback: Отзывы
+        partners: Партнеры
+
+about:
+    go_to_store: Перейти в магазин
+    latest_news: Последнее
+    about_me: Обо мне
+    whatch_us: Следите за Белкиным домом в Instagram
+    read: Читать далее
+
+store:
+    available: В наличии
+    order: Индивидуальный заказ
+    scheme: Схемы ковров
+    pouffes: pouffes
+    baskets: baskets
+    pladis: plaids
+    rugs: rugs
+    buy: Купить
+    info: Подробнее
+
+contacts:
+    header: Если что-то пошло не так или у вас есть вопросы/предложения/просьбы, мне можно написать на belkin.home@gmail.com или воспользоваться формой ниже, я обязательно отвечу.
+    btn_submit: Отправить
+
+partners:
+    sale: Скидка
+    promo: Промокод

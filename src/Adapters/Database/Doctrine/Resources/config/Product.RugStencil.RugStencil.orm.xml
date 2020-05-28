@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="BelkinDom\Store\Product\RugStencil\RugStencil"
+            repository-class="BelkinDom\Adapters\Database\Doctrine\RugStencilsRepository"
+            table="bk_products_rug_stencils">
+
+        <id name="rugStencilUuid" type="rugStencilUuid">
+            <generator strategy="NONE" />
+        </id>
+
+        <many-to-one field="file" target-entity="BelkinDom\Store\File\File" fetch="EAGER">
+            <join-column name="file_uuid" referenced-column-name="file_uuid" on-delete="CASCADE"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

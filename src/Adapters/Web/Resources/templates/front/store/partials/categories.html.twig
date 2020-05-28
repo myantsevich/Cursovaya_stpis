@@ -1,0 +1,27 @@
+{%- spaceless -%}
+<ul id="sub-menu">
+    {%- for category in categories -%}
+        <li>
+            {%- set totals = productsTotals.itemByKey(category.categoryUuid) -%}
+
+            {%- set classes = [] -%}
+            {%- set totalAmount = 0 -%}
+            {%- if current == category.slug -%}
+                {%- set classes = classes|merge(['active']) -%}
+            {%- endif -%}
+            {%- if totals is null -%}
+                {%- set classes = classes|merge(['not-in-stock']) -%}
+            {%- else -%}
+                {%- set totalAmount = totals.amount -%}
+            {%- endif -%}
+
+            <a href="{{ path('front_store_category_products', {slug: category.slug}) }}"
+               {%- if 0 == totalAmount %} onclick="return false;"{% endif -%}
+               {%- if 0 < classes|length %} class="{{ classes|join(' ') }}"{% endif %}>
+                {{- category.title -}}
+                <sup class="counter">{{ totalAmount }}</sup>
+            </a>
+        </li>
+    {%- endfor -%}
+</ul>
+{%- endspaceless -%}

@@ -1,0 +1,87 @@
+{% extends 'front/base.html.twig' %}
+
+{% block main %}
+    <div class="store-menu">
+        {{- include('front/store/partials/menu.html.twig', {current: 'in-stock'}) -}}
+        {{- render(controller('BelkinDom\\Adapters\\Web\\Controller\\Front\\StoreController::categories', {current: currentCategory.slug})) -}}
+    </div>
+
+    <div class="products app-container">
+        {%- for product in list -%}
+            {{- include('front/store/partials/regularProductPreview.html.twig', {category: currentCategory, product: product}) -}}
+        {%- endfor -%}
+    </div>
+
+    {{- include('front/store/partials/pager.html.twig', {pager: list}) -}}
+
+    <script>
+        (function () {
+            var Gallery = function ($el) {
+                var $items = $el.find(".regular-product-preview__gallery-item"),
+                $controls = $el.find(".regular-product-preview__gallery-controls");
+
+                if ($items.length < 2) {
+                    $controls.hide();
+                }
+
+                if (!$items.length) {
+                    return
+                }
+
+                activateItem($items.eq(0));
+
+                function getActiveItem($items) {
+                    return $($items.filter(function () {
+                        return $(this).hasClass("active");
+                    })[0]);
+                }
+
+                function activateItem($item) {
+                    $item.addClass("active");
+                }
+
+                function deactivateItems($items) {
+                    $items.removeClass("active");
+                }
+
+                $controls.on("click", ".next", function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $activeItem = getActiveItem($items),
+                        $nextItem = null;
+
+                    if ($activeItem.next().length > 0) {
+                        $nextItem = $activeItem.next();
+                    } else {
+                        $nextItem = $items.eq(0);
+                    }
+
+                    deactivateItems($items);
+                    activateItem($nextItem);
+                 });
+
+                $controls.on("click", ".prev", function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $activeItem = getActiveItem($items),
+                        $prevItem = null;
+
+                    if ($activeItem.prev().length > 0) {
+                        $prevItem = $activeItem.prev();
+                    } else {
+                        $prevItem = $items.eq($items.length - 1);
+                    }
+
+                    deactivateItems($items);
+                    activateItem($prevItem);
+                });
+            };
+
+            $(".regular-product-preview__gallery").each(function () {
+                new Gallery($(this));
+            })
+        })();
+    </script>
+{% endblock main %}

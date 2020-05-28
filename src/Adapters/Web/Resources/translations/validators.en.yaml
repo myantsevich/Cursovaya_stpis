@@ -1,0 +1,72 @@
+order:
+    exception:
+        person_name:
+            not_blank: Enter your name
+            max_length: The name is too long. It should not exceed {{ limit }} characters.
+        person_email:
+            not_blank: Enter your e-mail
+            not_valid_email: E-mail isn't valid
+            max_length: Е-mail is too long. It should not exceed {{ limit }} characters.
+
+    item:
+        exception:
+            quantity:
+                not_blank: Enter product number
+                min: Not less than {{ limit }}
+                max: Not more than {{ limit }}
+
+    individual:
+        exception:
+            person_name:
+                not_blank: Enter your name
+                max_length: The name is too long. It should not exceed {{ limit }} characters.
+            person_email:
+                not_blank: Enter your e-mail
+                not_valid_email: E-mail isn't valid
+                max_length: Е-mail is too long. It should not exceed {{ limit }} characters.
+            message:
+                not_blank: You didn't write anything about your order.
+                max_length: Your description should not exceed {{ limit }} characters.
+            size:
+                not_blank: Enter expected size.
+                max_length: Your description should not exceed {{ limit }} characters.
+            shape:
+                not_blank: Product shape description.
+                max_length: Your description should not exceed {{ limit }} characters.
+            material:
+                not_blank: Choose a material for product.
+                invalid_choice: Choose a material for product.
+
+contact:
+    exception:
+        person_name:
+            not_blank: Enter your name
+            max_length: The name is too long. It should not exceed {{ limit }} characters.
+        person_email:
+            not_blank: Enter your e-mail
+            not_valid_email: E-mail isn't valid
+            max_length: Е-mail is too long. It should not exceed {{ limit }} characters.
+        person_phone:
+            not_blank: Enter your e-mail
+            not_valid_phone: Phone number example +375295555555
+            max_length: Е-mail is too long. It should not exceed {{ limit }} characters.
+        message:
+            not_blank: You didn't write anything about your order.
+            max_length: Your message should not exceed {{ limit }} characters.
+
+product:
+    exception:
+        title:
+            not_blank: Enter a title
+            max_length: The title is too long. It should not exceed {{ limit }} characters.
+        summary:
+            not_blank: Enter short description.
+            max_length: Description is too long. It should not exceed {{ limit }} characters.
+        description:
+            not_blank: Enter full description.
+            max_length: Full description is too long. It should not exceed {{ limit }} characters.
+        category:
+            not_blank: Category is required.
+        material:
+            not_blank: Enter description of material.
+            max_length: Description is too long. It should not exceed {{ limit }} characters.
